@@ -1,0 +1,34 @@
+[platform_archives.rust.macos_aarch64]
+url = "https://static.rust-lang.org/dist/rust-1.80.0-aarch64-apple-darwin.tar.gz"
+sha256 = "26daa0d2e564b1c880ac7ead46b02f462ff27c2397aaa1d84167befe86af91d1"
+add_prefix = "{{spaces.sysroot}}"
+strip_prefix = "rust-1.80.0-aarch64-apple-darwin"
+link = "Hard"
+
+
+[platform_archives.rust.macos_x86_64]
+url = "https://static.rust-lang.org/dist/rust-1.80.0-x86_64-apple-darwin.tar.gz"
+sha256 = "18352bc5802e117189c029b6ed63bf83bfbcde7141f33eee69f037acd1767676"
+add_prefix = "{{spaces.sysroot}}"
+strip_prefix = "rust-1.80.0-x86_64-apple-darwin"
+link = "Hard"
+
+[vscode.settings]
+"rust-analyzer.cargo.buildScripts.invocationStrategy" = "once"
+"rust-analyzer.cargo.buildScripts.invocationLocation" = "root"
+"rust-analyzer.cargo.buildScripts.overrideCommand" = [
+    "cargo",
+    "check",
+    "--quiet",
+    "--message-format=json",
+    "--all-targets",
+    "--keep-going",
+]
+"rust-analyzer.cargo.targetDir" = "target-rust-analyzer"
+"rust-analyzer.check.noDefaultFeatures" = true
+"rust-analyzer.cargo.noDefaultFeatures" = true
+"rust-analyzer.showUnlinkedFileNotification" = false
+"rust-analyzer.imports.granularity.enforce" = true
+"rust-analyzer.imports.granularity.group" = "module"
+"rust-analyzer.cargo.buildScripts.enable" = true
+"rust-analyzer.procMacro.attributes.enable" = false
