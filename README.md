@@ -1,4 +1,4 @@
-# cmake Package
+# sysroot-rust
 
 Add a version of rust to your spaces SDK sysroot.
 

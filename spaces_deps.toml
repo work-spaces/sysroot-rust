@@ -13,6 +13,7 @@ add_prefix = "{{spaces.sysroot}}"
 strip_prefix = "rust-1.80.0-x86_64-apple-darwin"
 link = "Hard"
 
+
 [vscode.settings]
 "rust-analyzer.cargo.buildScripts.invocationStrategy" = "once"
 "rust-analyzer.cargo.buildScripts.invocationLocation" = "root"
