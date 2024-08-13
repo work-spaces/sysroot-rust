@@ -24,6 +24,9 @@ else
 fi
 """
 
+[deps]
+sccache = { git = "https://github.com/work-spaces/sysroot-sccache", branch = "v0" }
+
 
 [vscode.settings]
 "rust-analyzer.cargo.buildScripts.invocationStrategy" = "once"
