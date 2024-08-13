@@ -13,27 +13,16 @@ add_prefix = "{{spaces.sysroot}}/bin"
 link = "Hard"
 
 [env]
-paths = ["{{spaces.store}}/cargo/bin", "{{spaces.store}}/rustup/bin"]
-vars = { RUSTUP_HOME = "{{spaces.store}}/rustup", CARGO_HOME = "{{spaces.store}}/cargo" }
+paths = ["{{spaces.store}}/cargo/bin", "{{spaces.store}}/rustup/bin" ]
+vars = { RUSTUP_HOME = "{{spaces.store}}/rustup", CARGO_HOME = "{{spaces.store}}/cargo", RUSTUP_TOOLCHAIN = "1.80" }
 script =  """
-FILE=/etc/resolv.conf
 if [ -f "{{spaces.store}}/cargo/bin/cargo" ]; then
     echo "Rustup already installed"
 else 
+    chmod 755 {{spaces.store}}/rustup/bin/rustup-init
     rustup-init --default-host=x86_64-apple-darwin --default-toolchain=$RUSTUP_TOOLCHAIN --profile=default --no-modify-path -y
 fi
 """
-
-# download the RUSTUP binary
-# Set RUSTUP_HOME to point to ~/.spaces/rustup
-# Set RUSTUP_TOOLCHAIN to the toolchain desired for the workspace
-
-# export RUSTUP_HOME=/Users/tgil/.spaces/store/rustup
-# export CARGO_HOME=/Users/tgil/.spaces/store/cargo
-# export RUSTUP_TOOLCHAIN=1.80
-# export PATH=$PWD/sysroot/bin:$CARGO_HOME/bin:/usr/bin:/bin
-
-# rustup-init --default-host=x86_64-apple-darwin --default-toolchain=$RUSTUP_TOOLCHAIN --profile=default --no-modify-path -y
 
 
 [vscode.settings]
@@ -55,3 +44,4 @@ fi
 "rust-analyzer.imports.granularity.group" = "module"
 "rust-analyzer.cargo.buildScripts.enable" = true
 "rust-analyzer.procMacro.attributes.enable" = false
+"rust-analyzer.cargo.extraEnv" =  { "CARGO_HOME" =  "{{spaces.store}}/cargo", "RUSTUP_HOME"= "{{spaces.store}}/rustup" }
