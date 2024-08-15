@@ -24,10 +24,6 @@ else
 fi
 """
 
-[deps]
-sysroot-sccache = { git = "https://github.com/work-spaces/sysroot-sccache", branch = "v0", checkout = "BranchHead" }
-
-
 [vscode.settings]
 "rust-analyzer.cargo.buildScripts.invocationStrategy" = "once"
 "rust-analyzer.cargo.buildScripts.invocationLocation" = "root"
