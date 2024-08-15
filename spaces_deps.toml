@@ -20,7 +20,7 @@ if [ -f "{{spaces.store}}/cargo/bin/cargo" ]; then
     echo "Rustup already installed"
 else 
     chmod 755 {{spaces.store}}/rustup/bin/rustup-init
-    rustup-init --default-host=x86_64-apple-darwin --default-toolchain=$RUSTUP_TOOLCHAIN --profile=default --no-modify-path -y
+    rustup-init --profile=default --no-modify-path -y
 fi
 """
 
