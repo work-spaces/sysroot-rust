@@ -14,7 +14,7 @@ link = "Hard"
 
 [env]
 paths = ["{{spaces.store}}/cargo/bin", "{{spaces.store}}/rustup/bin" ]
-vars = { RUSTUP_HOME = "{{spaces.store}}/rustup", CARGO_HOME = "{{spaces.store}}/cargo", RUSTUP_TOOLCHAIN = "1.80" }
+vars = { RUSTUP_HOME = "{{spaces.store}}/rustup", CARGO_HOME = "{{spaces.store}}/cargo" }
 script =  """
 if [ -f "{{spaces.store}}/cargo/bin/cargo" ]; then
     echo "Rustup already installed"
