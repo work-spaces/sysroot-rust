@@ -25,7 +25,7 @@ fi
 """
 
 [deps]
-sccache = { git = "https://github.com/work-spaces/sysroot-sccache", branch = "v0", checkout = "BranchHead" }
+sysroot-sccache = { git = "https://github.com/work-spaces/sysroot-sccache", branch = "v0", checkout = "BranchHead" }
 
 
 [vscode.settings]
