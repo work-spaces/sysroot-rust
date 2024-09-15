@@ -28,15 +28,23 @@ checkout.update_env(
     rule = {"name": "rust_env"},
     env = {
         "vars": {"RUSTUP_HOME": rustup_home, "CARGO_HOME": cargo_home},
-        "paths": [cargo_path, rustup_path],
+        "paths": [cargo_path],
     },
 )
 
 # only want to run this rule once
 run.add_exec(
-    rule = {"name": "rustup-init"},
+    rule = {"name": "rustup-init-permissions"},
     exec = {
-        "command": "sysroot/bin/rustup-init".format(rustup_path),
+        "command": "chmod",
+        "args": ["755", "sysroot/bin/rustup-init"],
+    },
+)
+
+run.add_exec(
+    rule = {"name": "rustup-init", "deps": ["rustup-init-permissions"]},
+    exec = {
+        "command": "sysroot/bin/rustup-init",
         "args": ["--profile=default", "--no-modify-path", "-y"],
     },
 )
