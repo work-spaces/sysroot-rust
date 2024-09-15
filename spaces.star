@@ -10,7 +10,7 @@ macos_x86_64 = {
 }
 
 checkout.add_platform_archive(
-    rule = {"name": "rustup-init"},
+    rule = {"name": "rustup-init-archive"},
     platforms = {
         "macos_x86_64": macos_x86_64,
         "macos_aarch64": macos_x86_64,
