@@ -32,7 +32,8 @@ checkout.update_env(
     },
 )
 
-# only want to run this rule once
+cargo_exists = fs.exists(cargo_path)
+
 run.add_exec(
     rule = {"name": "rustup-init-permissions"},
     exec = {
@@ -45,7 +46,7 @@ run.add_exec(
     rule = {"name": "rustup-init", "deps": ["rustup-init-permissions"]},
     exec = {
         "command": "sysroot/bin/rustup-init",
-        "args": ["--profile=default", "--no-modify-path", "-y"],
+        "args": ["--version"] if cargo_exists else ["--profile=default", "--no-modify-path", "-y"]
     },
 )
 
