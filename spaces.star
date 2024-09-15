@@ -21,7 +21,6 @@ checkout.add_platform_archive(
 
 store_path = info.store_path()
 cargo_path = "{}/cargo/bin".format(store_path)
-rustup_path = "{}/rustup/bin".format(store_path)
 rustup_home = "{}/rustup".format(store_path)
 cargo_home = "{}/cargo".format(store_path)
 
@@ -37,7 +36,7 @@ checkout.update_env(
 run.add_exec(
     rule = {"name": "rustup-init"},
     exec = {
-        "command": "{}/rustup-init".format(rustup_path),
+        "command": "sysroot/bin/rustup-init".format(rustup_path),
         "args": ["--profile=default", "--no-modify-path", "-y"],
     },
 )
