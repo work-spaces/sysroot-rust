@@ -1,6 +1,8 @@
 """
-
+Spaces starlark script for adding rustup and cargo to the sysroot.
 """
+
+# more binaries https://forge.rust-lang.org/infra/other-installation-methods.html
 
 macos_x86_64 = {
     "url": "https://static.rust-lang.org/rustup/dist/x86_64-apple-darwin/rustup-init",
@@ -9,17 +11,27 @@ macos_x86_64 = {
     "link": "Hard",
 }
 
+linux_x86_64 = macos_x86_64 | {
+    "url": "https://static.rust-lang.org/rustup/dist/x86_64-unknown-linux-gnu/rustup-init",
+    "sha256": "6aeece6993e902708983b209d04c0d1dbb14ebb405ddb87def578d41f920f56d",
+}
+
+windows_x86_64 = macos_x86_64 | {
+    "url": "https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe",
+    "sha256": "193d6c727e18734edbf7303180657e96e9d5a08432002b4e6c5bbe77c60cb3e8",
+}
+
 checkout.add_platform_archive(
     rule = {"name": "rustup-init-archive"},
     platforms = {
         "macos_x86_64": macos_x86_64,
         "macos_aarch64": macos_x86_64,
+        "linux_x86_64": linux_x86_64,
+        "windows_x86_64": windows_x86_64,
     },
 )
 
-# more binaries https://forge.rust-lang.org/infra/other-installation-methods.html
-
-store_path = info.store_path()
+store_path = info.get_path_to_store()
 cargo_path = "{}/cargo/bin".format(store_path)
 rustup_home = "{}/rustup".format(store_path)
 cargo_home = "{}/cargo".format(store_path)
