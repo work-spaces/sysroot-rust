@@ -47,7 +47,7 @@ checkout.update_env(
 cargo_exists = fs.exists(cargo_path)
 
 run.add_exec(
-    rule = {"name": "rustup-init-permissions"},
+    rule = {"name": "rustup-init-permissions", "type": "Setup"},
     exec = {
         "command": "chmod",
         "args": ["755", "sysroot/bin/rustup-init"],
@@ -55,7 +55,7 @@ run.add_exec(
 )
 
 run.add_exec(
-    rule = {"name": "rustup-init", "deps": ["rustup-init-permissions"]},
+    rule = {"name": "rustup-init", "deps": ["rustup-init-permissions"], "type": "Setup"},
     exec = {
         "command": "sysroot/bin/rustup-init",
         "args": ["--version"] if cargo_exists else ["--profile=default", "--no-modify-path", "-y"]
